@@ -36,3 +36,10 @@ Keys are JavaScript strings and edges are compared one UTF-16 code unit at a tim
 - `trie.keys(): string[]` — all stored keys in lexicographic (UTF-16 code-unit) order. Fresh array each call.
 - `trie.clear()` — remove everything.
 - `trie.size: number` — number of stored keys.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
